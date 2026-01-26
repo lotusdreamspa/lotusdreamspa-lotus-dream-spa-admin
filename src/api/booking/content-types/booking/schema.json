@@ -20,6 +20,9 @@
     "duration": {
       "type": "integer"
     },
+    "price": {
+      "type": "integer"
+    },
     "treatment": {
       "type": "relation",
       "relation": "oneToOne",
@@ -40,6 +43,12 @@
         "cencelled",
         "done"
       ]
+    },
+    "notes": {
+      "type": "text"
+    },
+    "cancellationNotes": {
+      "type": "text"
     }
   }
 }

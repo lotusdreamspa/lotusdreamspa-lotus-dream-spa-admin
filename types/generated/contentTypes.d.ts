@@ -444,6 +444,7 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
     bookingStatus: Schema.Attribute.Enumeration<
       ['created', 'waiting', 'confirmed', 'cencelled', 'done']
     >;
+    cancellationNotes: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -456,6 +457,8 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
       'api::booking.booking'
     > &
       Schema.Attribute.Private;
+    notes: Schema.Attribute.Text;
+    price: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     time: Schema.Attribute.Time;
     treatment: Schema.Attribute.Relation<
