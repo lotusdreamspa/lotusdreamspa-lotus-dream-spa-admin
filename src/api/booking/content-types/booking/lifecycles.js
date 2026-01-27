@@ -170,14 +170,30 @@ module.exports = {
     const status = result.bookingStatus || (params.data && params.data.bookingStatus);
 
     if (status === 'confirmed') await sendBookingEmail(result.id, 'confirmed');
-    if (status === 'cancelled') await sendBookingEmail(result.id, 'cancelled');
+    // Non mandiamo email 'cancelled' alla creazione, non ha senso logico, ma se serve lascialo
+  },
+
+  // Usiamo beforeUpdate per salvare lo stato VECCHIO
+  async beforeUpdate(event) {
+    const { params } = event;
+    
+    // Cerchiamo l'entità com'è ADESSO nel database
+    const existingEntry = await strapi.entityService.findOne('api::booking.booking', params.where.id);
+    
+    // Salviamo lo stato attuale dentro l'evento per usarlo dopo
+    event.state = existingEntry;
   },
 
   async afterUpdate(event) {
-    const { result, params } = event;
+    const { result, params, state } = event; // 'state' contiene i dati salvati in beforeUpdate
+    
     const newStatus = params.data && params.data.bookingStatus;
+    const oldStatus = state && state.bookingStatus;
 
-    if (newStatus === 'confirmed') await sendBookingEmail(result.id, 'confirmed');
-    if (newStatus === 'cancelled') await sendBookingEmail(result.id, 'cancelled');
+    // ESEGUIAMO SOLO SE LO STATO È CAMBIATO
+    if (newStatus && newStatus !== oldStatus) {
+      if (newStatus === 'confirmed') await sendBookingEmail(result.id, 'confirmed');
+      if (newStatus === 'cancelled') await sendBookingEmail(result.id, 'cancelled');
+    }
   },
 };
