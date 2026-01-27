@@ -17,10 +17,10 @@ const sendBookingEmail = async (bookingId, statusType) => {
           subjectCanc: 'Booking Cancelled - Lotus Dream Spa ❌',
           titleConf: 'Booking Confirmed',
           titleCanc: 'Booking Cancelled',
-          msgConf: `We are waiting for you, ${entry.customer.name ?? 'Guest'}.`,
-          msgCanc: `Hello ${entry.customer.name ?? 'Guest'}, your appointment has been cancelled as requested.`,
-          textConf: `Dear ${entry.customer.name ?? 'Guest'}, your appointment is confirmed.`,
-          textCanc: `Dear ${entry.customer.name ?? 'Guest'}, your appointment has been cancelled.`,
+          msgConf: `We are looking forward to see you, ${entry.customer.name ?? 'dear Guest'}.`,
+          msgCanc: `Hello ${entry.customer.name ?? 'dear Guest'}, your appointment has been cancelled as requested.`,
+          textConf: `Dear ${entry.customer.name ?? 'dear Guest'}, your appointment is confirmed.`,
+          textCanc: `Dear ${entry.customer.name ?? 'dear Guest'}, your appointment has been cancelled.`,
           detailsHeader: 'Appointment Details',
           labelTreatment: 'Treatment',
           labelDate: 'Date',
@@ -73,7 +73,7 @@ const sendBookingEmail = async (bookingId, statusType) => {
       const emailConfig = {
         subject: isCancelled ? t.subjectCanc : t.subjectConf,
         title: isCancelled ? t.titleCanc : t.titleConf,
-        titleColor: isCancelled ? '#FF4D4D' : '#0AE072', // Rosso o Verde
+        titleColor: isCancelled ? '#B66676' : '#D8975D', // Rosso o Verde
         message: isCancelled ? t.msgCanc : t.msgConf,
         text: isCancelled ? t.textCanc : t.textConf
       };
@@ -88,8 +88,8 @@ const sendBookingEmail = async (bookingId, statusType) => {
 
       // 2. LOGICA FOOTER: Se cancellato testo cortesia, altrimenti bottone mappa
       const actionFooterHtml = isCancelled 
-        ? `<p style="color: #8ab4f8; font-size: 14px; margin: 0; font-style: italic;">${t.footerCanc}</p>`
-        : `<a href="${mapLink}" target="_blank" style="background-color: #00BBFF; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 14px; display: inline-block;">${t.btnDirections}</a>`;
+        ? `<p style="color: #8ab4f8; font-size: 24px; margin: 0; font-style: italic;">${t.footerCanc}</p>`
+        : `<a href="${mapLink}" target="_blank" style="background-color: #D8975D; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 14px; display: inline-block;">${t.btnDirections}</a>`;
 
 
       console.log(`Sending ${statusType} email to: ${entry.customer.email} (Language: ${isKhmer ? 'Khmer' : 'English'})`);
