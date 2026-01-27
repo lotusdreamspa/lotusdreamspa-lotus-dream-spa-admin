@@ -1,4 +1,4 @@
-module.exports = ({ env }) => ({
+module.exports = () => ({
   email: {
     config: {
       provider: 'nodemailer',
@@ -7,8 +7,8 @@ module.exports = ({ env }) => ({
         port: 465,
         secure: true,
         auth: {
-          user: env('SMTP_USERNAME'), // La tua mail gmail
-          pass: env('SMTP_PASSWORD'), // La "App Password" di 16 caratteri generata prima
+          user: 'lotusdreamspa.sr@gmail.com', // La tua mail gmail
+          pass: 'kmlheebvtsltoqql', // La "App Password" di 16 caratteri generata prima
         },
       },
       settings: {
