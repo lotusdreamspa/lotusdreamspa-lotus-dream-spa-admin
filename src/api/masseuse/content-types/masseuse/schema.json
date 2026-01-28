@@ -18,7 +18,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::booking.booking",
-      "mappedBy": "masseus"
+      "mappedBy": "masseuse"
     }
   }
 }
