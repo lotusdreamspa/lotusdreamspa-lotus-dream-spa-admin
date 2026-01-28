@@ -50,7 +50,7 @@
     "cancellationNotes": {
       "type": "text"
     },
-    "masseuse": {
+    "masseus": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::masseuse.masseuse",

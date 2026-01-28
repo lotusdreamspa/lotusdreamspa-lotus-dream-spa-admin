@@ -457,7 +457,7 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
       'api::booking.booking'
     > &
       Schema.Attribute.Private;
-    masseuse: Schema.Attribute.Relation<'manyToOne', 'api::masseuse.masseuse'>;
+    masseus: Schema.Attribute.Relation<'manyToOne', 'api::masseuse.masseuse'>;
     notes: Schema.Attribute.Text;
     price: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
