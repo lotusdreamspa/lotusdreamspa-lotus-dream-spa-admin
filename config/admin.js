@@ -5,6 +5,9 @@ module.exports = ({ env }) => ({
   apiToken: {
     salt: env('API_TOKEN_SALT'),
   },
+  cookie: {
+      secure: env.bool('SECURE_COOKIES', false), // Su Railway imposta la variabile SECURE_COOKIES=false per testare
+    },
   transfer: {
     token: {
       salt: env('TRANSFER_TOKEN_SALT'),
